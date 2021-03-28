@@ -1,5 +1,9 @@
 const { ApolloServer } = require("apollo-server");
 
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 const schema = require("./src/schema");
 const resolvers = require("./src/resolvers");
 const DataSources = require("./src/dataSources");
@@ -8,10 +12,10 @@ const { decodeToken } = require("./src/utils/token");
 const knexConfig = {
   client: "mysql2",
   connection: {
-    host: "127.0.0.1",
-    user: "root",
-    password: "12356",
-    database: "todos",
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DATABASE,
   },
 };
 
